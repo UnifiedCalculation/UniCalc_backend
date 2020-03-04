@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the Backend for the UniCalc application. It is implemented in ruby on rails with ruby version `2.7.0p0` and rails `6.0.2.1`.
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+The recommended Setup ist a Windows with Ubuntu subsystem or Ubuntu machine. Use https://gorails.com/setup/ubuntu/19.10 to do the initial rails setup with `rbenv`.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

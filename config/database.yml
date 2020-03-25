@@ -23,4 +23,4 @@ production:
   pool: 5
   database: unicalc_prod
   username: unicalc
-  password: <%= ENV['LOGO_TASK_SHARE_DATABASE_PASSWORD'] %>
+  password: <%= ENV['UNICALC_BACKEND_DATABASE_PASSWORD'] %>

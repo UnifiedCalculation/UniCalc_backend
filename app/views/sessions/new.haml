@@ -1,1 +1,2 @@
-= react_component 'loginForm'
+= form_for :session, url: sessions_path, local: true do |form|
+  = react_component 'loginForm'

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
+  root 'dashboard#show'
+
+  get 'dashboard/show'
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users

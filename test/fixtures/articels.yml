@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  npk: one
+  price: 9.99
+  description: MyString
+  unit: MyString
+  company: one
+
+two:
+  name: MyString
+  npk: two
+  price: 9.99
+  description: MyString
+  unit: MyString
+  company: two

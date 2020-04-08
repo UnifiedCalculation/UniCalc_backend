@@ -7,10 +7,5 @@
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body.bg-dark
-    .container
-      = yield
-
-      - if Rails.env.development?
-        .card.mt-5
-          = debug(params)
+  %body{style: 'margin: 0px'}
+    = yield

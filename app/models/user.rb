@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_one :employee
   has_one :customer
 
+  has_one :company, through: :employee
+
   validates :email, presence: true, uniqueness: true
 
   def full_name

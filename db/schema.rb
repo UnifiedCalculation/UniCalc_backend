@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_112812) do
+ActiveRecord::Schema.define(version: 2020_03_29_164326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 2020_03_29_112812) do
   create_table "articels_entries", id: false, force: :cascade do |t|
     t.bigint "articel_id", null: false
     t.bigint "entry_id", null: false
+    t.string "comment"
+    t.integer "amount"
+    t.decimal "discount"
     t.index ["articel_id", "entry_id"], name: "index_articels_entries_on_articel_id_and_entry_id"
     t.index ["entry_id", "articel_id"], name: "index_articels_entries_on_entry_id_and_articel_id"
   end
@@ -93,6 +96,9 @@ ActiveRecord::Schema.define(version: 2020_03_29_112812) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "discount"
+    t.bigint "employee_id"
+    t.index ["employee_id"], name: "index_offers_on_employee_id"
     t.index ["project_id"], name: "index_offers_on_project_id"
   end
 
@@ -105,6 +111,8 @@ ActiveRecord::Schema.define(version: 2020_03_29_112812) do
     t.string "city"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
+    t.string "payment_target"
     t.index ["company_id"], name: "index_projects_on_company_id"
     t.index ["customer_id"], name: "index_projects_on_customer_id"
   end
@@ -129,6 +137,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_112812) do
   add_foreign_key "employees", "users"
   add_foreign_key "entries", "offers"
   add_foreign_key "npks", "npks"
+  add_foreign_key "offers", "employees"
   add_foreign_key "offers", "projects"
   add_foreign_key "projects", "companies"
   add_foreign_key "projects", "customers"

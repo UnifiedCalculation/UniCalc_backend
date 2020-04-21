@@ -3,8 +3,7 @@ class CompaniesController < ApiController
 
   def customers
     @customers = Customer.where company: current_user.company
-    # TODO: Remove password_digest
-    render json: @customers.to_json(include: :user)
+    render json: @customers.to_json(include: {user: {only: [:firstname, :lastname, :email]}})
   end
 
   def projects

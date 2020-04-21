@@ -6,6 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Create dummy admin user and customer
+user = User.create email: "admin@example.com", password: "123456", password_confirmation: "123456", firstname: "Admin", lastname: "Admin"
+company = Company.create name: "Example AG", url: "example.com", address: "Examplestreet 123", city: "Zurich", zip: "8000", phone: "+41 11 234 56 78", mail: "info@examplecompany.ch"
+Employee.create user: user, company: company, role: "admin"
+
+customer_user = User.create email: "customer@example.com", password: "123456", password_confirmation: "123456", firstname: "Example", lastname: "Customer"
+Customer.create user: customer_user, company: company, address: "Examplestreet 333", city: "Zurich", zip: "8000", phone: "+41 11 234 56 78"
 
 # Create NPK
 parent = Npk.create number: 0, name: "Kosten für Grundstück"

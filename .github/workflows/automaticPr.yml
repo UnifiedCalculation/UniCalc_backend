@@ -19,5 +19,5 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ secrets.PR_TOKEN }}
         branch: newReactFiles
-        head: "I have no idea wtf this does because THERE IS NO DOCUMENTATION"
+        head: "master"
         title: "An automatically created PR!"

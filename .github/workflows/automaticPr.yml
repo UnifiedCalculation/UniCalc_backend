@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Create Pull Request for new React components
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ newReactFiles ]
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v2
+        with:
+          token: ${{ secrets.PR_TOKEN }}
+          commit-message: Merge new react components from frontend
+          title: 'Add new react components from frontend'
+          body: |
+            New report
+            - Contains all changes from the master branch of the frontend
+            - https://github.com/UnifiedCalculation/UniCalc_Frontend
+          labels: automatic pr
+          assignees: felunka
+          draft: false
+          branch: newReactFiles
+          request-to-parent: false

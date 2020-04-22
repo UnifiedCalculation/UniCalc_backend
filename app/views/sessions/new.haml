@@ -1,2 +1,5 @@
-= form_for :session, url: sessions_path, local: true do |form|
-  = react_component 'loginForm/loginForm'
+.container
+  .card
+    = image_tag 'logo.png'
+    = form_for :session, url: sessions_path, local: true do |form|
+      = react_component 'loginForm/loginForm'

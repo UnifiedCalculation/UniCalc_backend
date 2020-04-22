@@ -7,25 +7,16 @@ name: Create Pull Request for new React components
 on:
   push:
     branches: [ newReactFiles ]
+    
 jobs:
-  createPullRequest:
+  create-pr-on-push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v2
-        with:
-          token: ${{ secrets.PR_TOKEN }}
-          commit-message: Merge new react components from frontend
-          title: 'Add new react components from frontend'
-          body: |
-            New report
-            - Contains all changes from the master branch of the frontend
-            - https://github.com/UnifiedCalculation/UniCalc_Frontend
-          labels: automatic pr
-          assignees: felunka
-          draft: false
-          branch: newReactFiles
-          request-to-parent: false
+    - uses: actions/checkout@1.0.0
+    
+    - name: Create pull request
+      uses: thomaseizinger/create-pull-request@master
+      with:
+        GITHUB_TOKEN: ${{ secrets.PR_TOKEN }}
+        branch: newReactFiles
+        title: "An automatically created PR!"

@@ -8,6 +8,8 @@ import NewProjectDialog from '../newProjectDialog/newProjectDialog';
 import ProjectDisplay from '../projectDisplay/projectDisplay';
 import OfferDisplay from '../offerDisplay/offerDisplay';
 import * as API from '../connectionHandler/connectionHandler';
+import UserOverview from "../layouts/userAdministration/userOverview";
+
 
 
 const SinglePage = () => {
@@ -45,12 +47,15 @@ const SinglePage = () => {
   const submitNewProject = (newProjectData) => {
     setNewProjectDialogViewState(false);
     console.log(JSON.stringify(newProjectData));
+
     API.submitNewProject(newProjectData, function(){ return API.getUserProjects(setProjects); });
+
     ;
   }
 
   const onShowOffer = (offerId) => {
     API.getOfferData(projectData.id, offerId, setOfferData);
+
   }
 
   const addNewProjectDialog =
@@ -94,7 +99,7 @@ const SinglePage = () => {
 
 
   return (
-    <>
+    <div class="mainPage">
       <Header />
       {addNewProjectDialog}
         <div className="flexCards">
@@ -102,8 +107,9 @@ const SinglePage = () => {
         </div>
         {projectDisplay}
         {offerDisplay}
+        <UserOverview/>
       <Navigation />
-    </>
+    </div>
   );
 };
 export default SinglePage;

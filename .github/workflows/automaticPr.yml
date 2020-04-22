@@ -11,12 +11,10 @@ jobs:
   createPullRequest:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - name: Create Pull Request
-        id: cpr
         uses: peter-evans/create-pull-request@v2
         with:
           token: ${{ secrets.PR_TOKEN }}

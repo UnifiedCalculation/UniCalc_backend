@@ -1,11 +1,8 @@
 class ProjectsController < ApiController
   def index
-    @projects = Projects.where company: current_user.company
+    @projects = Project.where company: current_user.company
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @projects }
-    end
+    render json: @projects
   end
 
   def show

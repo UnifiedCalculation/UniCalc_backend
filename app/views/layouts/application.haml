@@ -2,6 +2,7 @@
 %html
   %head
     %title= yield(:title)
+    = tag 'meta', {content: "width=device-width, initial-scale=1.0", name: "viewport"}, true
     = csrf_meta_tags
     = csp_meta_tag
 

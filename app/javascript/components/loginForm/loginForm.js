@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
 
-import './loginForm.css';
 
 class LoginForm extends React.Component {
   render(errorMessage, ...props) {

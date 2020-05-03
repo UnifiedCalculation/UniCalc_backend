@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
-  get 'companies/customers'
-  get 'companies/projects'
-  get 'projects/show'
-  get 'projects/create'
-  get 'projects/update'
-  get 'projects/destroy'
   root 'dashboard#show'
 
   get 'dashboard/show'
+
+  get 'username', to: 'users#username'
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users

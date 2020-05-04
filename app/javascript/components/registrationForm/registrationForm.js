@@ -9,8 +9,6 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import Button from '@material-ui/core/Button';
 
-import './registrationForm.css';
-
 class RegistrationForm extends React.Component {
   render(errorMessage, ...props) {
 

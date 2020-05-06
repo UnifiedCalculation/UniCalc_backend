@@ -12,7 +12,8 @@ class UsersController < ApplicationController
                               city: params[:city],
                               zip: params[:zip],
                               address: params[:address],
-                              url: params[:webpage]
+                              url: params[:webpage],
+                              iban: params[:iban]
 
     user = User.create! firstname: params[:owner_firstname],
                         lastname: params[:owner_surname],

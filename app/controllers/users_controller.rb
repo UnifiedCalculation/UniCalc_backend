@@ -31,8 +31,7 @@ class UsersController < ApplicationController
                         password_confirmation: params[:password_confirmation]
 
     Employee.create! user: user,
-                     company: company,
-                     role: "admin"
+                     company: company
 
 
     redirect_to new_session_path

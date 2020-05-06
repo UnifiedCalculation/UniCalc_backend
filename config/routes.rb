@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'dashboard/show'
 
   get 'username', to: 'users#username'
+  get 'user', to: 'users#show'
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users

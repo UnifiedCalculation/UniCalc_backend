@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   skip_before_action :auth_user, only: [:new, :create]
 
+  def show
+    if params[:id]
+      user = User.find params[:id]
+    else
+      user = current_user
+    end
+    render json: user.to_json(only: [:firstname, :lastname])
+  end
+
   def new
 
   end

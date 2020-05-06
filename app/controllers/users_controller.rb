@@ -25,7 +25,7 @@ class UsersController < ApplicationController
                      role: "admin"
 
 
-    redirect_to sessions_url
+    redirect_to new_session_path
   end
 
   def username

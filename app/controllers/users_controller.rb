@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     else
       user = current_user
     end
-    render json: user.to_json(only: [:firstname, :lastname])
+    render json: user.to_json(only: [:firstname, :lastname], include: :roles)
   end
 
   def new

@@ -26,7 +26,7 @@ const ArticleTable = ({ articles, discount, ...props }) => {
 
   const classes = useStyles();
 
-  const entries = articles.map((entry, index) => (
+  const entries = articles && articles.length ? articles.map((entry, index) => (
     <TableRow className={classes.singleRow} key={index + entry.name + entry.amount} onClick={() => alert('this works wow')}>
       <TableCell component="th" scope="row">
         {entry.name}
@@ -37,7 +37,7 @@ const ArticleTable = ({ articles, discount, ...props }) => {
       <TableCell align="right">{(entry.discount ? entry.discount : 0).toFixed(2).toString().concat("%")}</TableCell>
       <TableCell align="right">{(entry.discount ? entry.amount * entry.price * (1 - (entry.discount / 100)) : entry.amount * entry.price).toFixed(2)}</TableCell>
     </TableRow>
-  ))
+  )) : null;
 
   var total = 0;
 

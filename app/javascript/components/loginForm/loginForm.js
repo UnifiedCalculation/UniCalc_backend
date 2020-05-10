@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
 
+import './loginForm.css';
 
 class LoginForm extends React.Component {
   render(errorMessage, ...props) {
@@ -104,7 +105,7 @@ class LoginForm extends React.Component {
             {errorComponent}
             {formFields}
             <div className="cardStyle">
-            <Button type="button" variant="contained" color="secondary" href={"/users/new"}>
+            <Button type="button" variant="contained" color="secondary" href={"/registration"}>
                 Registrieren
                       </Button>
               <Button type="submit" variant="contained" color="primary" disabled={false}>

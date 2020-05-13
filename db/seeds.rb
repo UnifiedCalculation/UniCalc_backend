@@ -16,7 +16,7 @@ Role.create name: "Mitarbeiter"
 user = User.create email: "admin@example.com", password: "123456", password_confirmation: "123456", firstname: "Admin", lastname: "Admin"
 user.roles << Role.first
 company = Company.create name: "Example AG", url: "example.com", address: "Examplestreet 123", city: "Zurich", zip: "8000", phone: "+41 11 234 56 78", mail: "info@examplecompany.ch"
-Employee.create user: user, company: company, role: "admin"
+Employee.create user: user, company: company
 
 customer_user = User.create email: "customer@example.com", password: "123456", password_confirmation: "123456", firstname: "Example", lastname: "Customer"
 Customer.create user: customer_user, company: company, address: "Examplestreet 333", city: "Zurich", zip: "8000", phone: "+41 11 234 56 78"

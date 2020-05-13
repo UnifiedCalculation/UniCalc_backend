@@ -59,7 +59,7 @@ const OfferCards = ({ offers, setOfferDetails, onNewOffer }) => {
     const offerCards = offers ?
         offers.map((entry, index) =>
             <DynamicCard
-                key={(index + 1) + "-offerCard"}
+                key={(index + 1) + "-offerCard-detail"}
                 onClick={() => setOfferDetails(offers[index])}
                 projectName={entry.name}
                 description={"Zuletz bearbeitet am: " +
@@ -77,7 +77,7 @@ const OfferCards = ({ offers, setOfferDetails, onNewOffer }) => {
                 id="panel2a-header"
             >
                 <Typography className={classes.heading} gutterBottom variant="h5" component="h2">Offerten</Typography>
-                <IconButton className={classes.tertiaryHeadingButton} onClick={triggerNewOfferDialog} disabled={!(user && ((user.roles.includes("Admin") || user.roles.includes("Verkäufer")))) }>
+                <IconButton className={classes.tertiaryHeadingButton} onClick={triggerNewOfferDialog} disabled={!(user && ((user.roles.some(element => element.name == "Admin") || user.roles.some(element => element.name == "Verkäufer")))) }>
                     <FontAwesomeIcon icon={faPen} />
                 </IconButton>
             </ExpansionPanelSummary>

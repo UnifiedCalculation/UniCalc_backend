@@ -1,7 +1,7 @@
 # README
 ![Heroku](https://heroku-badge.herokuapp.com/?app=unicalc-staging)
 
-This is the Backend for the UniCalc application. It is implemented in ruby on rails with ruby version `2.7.0p0` and rails `6.0.2.1`.
+This is the Backend for the UniCalc application. It is implemented in ruby on rails with ruby version `2.7.0p0` and rails `6.0.3`.
 
 ## Setup
 

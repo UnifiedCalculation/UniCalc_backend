@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_163154) do
+ActiveRecord::Schema.define(version: 2020_05_06_155816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,17 +51,6 @@ ActiveRecord::Schema.define(version: 2020_05_13_163154) do
     t.string "iban"
   end
 
-  create_table "contracts", force: :cascade do |t|
-    t.bigint "project_id", null: false
-    t.string "name"
-    t.decimal "discount"
-    t.bigint "employee_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["employee_id"], name: "index_contracts_on_employee_id"
-    t.index ["project_id"], name: "index_contracts_on_project_id"
-  end
-
   create_table "customers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "company_id", null: false
@@ -85,11 +74,23 @@ ActiveRecord::Schema.define(version: 2020_05_13_163154) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.bigint "offer_id", null: false
+    t.bigint "form_id", null: false
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["offer_id"], name: "index_entries_on_offer_id"
+    t.index ["form_id"], name: "index_entries_on_form_id"
+  end
+
+  create_table "forms", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.string "name"
+    t.decimal "discount"
+    t.bigint "employee_id", null: false
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_forms_on_employee_id"
+    t.index ["project_id"], name: "index_forms_on_project_id"
   end
 
   create_table "npks", force: :cascade do |t|
@@ -100,17 +101,6 @@ ActiveRecord::Schema.define(version: 2020_05_13_163154) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["npk_id"], name: "index_npks_on_npk_id"
     t.index ["number"], name: "index_npks_on_number"
-  end
-
-  create_table "offers", force: :cascade do |t|
-    t.bigint "project_id", null: false
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.decimal "discount"
-    t.bigint "employee_id"
-    t.index ["employee_id"], name: "index_offers_on_employee_id"
-    t.index ["project_id"], name: "index_offers_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -155,16 +145,14 @@ ActiveRecord::Schema.define(version: 2020_05_13_163154) do
   add_foreign_key "articels", "npks"
   add_foreign_key "articels_entries", "articels"
   add_foreign_key "articels_entries", "entries"
-  add_foreign_key "contracts", "employees"
-  add_foreign_key "contracts", "projects"
   add_foreign_key "customers", "companies"
   add_foreign_key "customers", "users"
   add_foreign_key "employees", "companies"
   add_foreign_key "employees", "users"
-  add_foreign_key "entries", "offers"
+  add_foreign_key "entries", "forms"
+  add_foreign_key "forms", "employees"
+  add_foreign_key "forms", "projects"
   add_foreign_key "npks", "npks"
-  add_foreign_key "offers", "employees"
-  add_foreign_key "offers", "projects"
   add_foreign_key "projects", "companies"
   add_foreign_key "projects", "customers"
   add_foreign_key "roles_users", "roles"

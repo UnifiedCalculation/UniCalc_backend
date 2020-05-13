@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   get 'username', to: 'users#username'
   get 'user', to: 'users#show'
 
-  get 'contracts', to: 'contracts#index'
-
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
 
@@ -16,10 +14,10 @@ Rails.application.routes.draw do
   resources :companies
   resources :offers
   resources :projects do
-    resources :offers do
-      resources :entries
-    end
-    resources :contracts do
+    resources :forms do
+      collection do
+        get '/:status', to: 'forms#index'
+      end
       resources :entries
     end
   end

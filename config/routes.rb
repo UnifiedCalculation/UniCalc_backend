@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'username', to: 'users#username'
   get 'user', to: 'users#show'
 
+  get 'contracts', to: 'contracts#index'
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
 
@@ -17,10 +19,9 @@ Rails.application.routes.draw do
     resources :offers do
       resources :entries
     end
-  end
-
-  resources :contracts do
-    resources :entries
+    resources :contracts do
+      resources :entries
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

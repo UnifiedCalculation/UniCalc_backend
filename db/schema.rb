@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_155816) do
+ActiveRecord::Schema.define(version: 2020_05_13_163154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 2020_05_06_155816) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "iban"
+  end
+
+  create_table "contracts", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.string "name"
+    t.decimal "discount"
+    t.bigint "employee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_contracts_on_employee_id"
+    t.index ["project_id"], name: "index_contracts_on_project_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -144,6 +155,8 @@ ActiveRecord::Schema.define(version: 2020_05_06_155816) do
   add_foreign_key "articels", "npks"
   add_foreign_key "articels_entries", "articels"
   add_foreign_key "articels_entries", "entries"
+  add_foreign_key "contracts", "employees"
+  add_foreign_key "contracts", "projects"
   add_foreign_key "customers", "companies"
   add_foreign_key "customers", "users"
   add_foreign_key "employees", "companies"

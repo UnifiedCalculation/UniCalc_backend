@@ -6,8 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Create roles
+Role.create name: "Admin"
+Role.create name: "Verkäufer"
+Role.create name: "Projektleiter"
+Role.create name: "Mitarbeiter"
+
 # Create dummy admin user and customer
 user = User.create email: "admin@example.com", password: "123456", password_confirmation: "123456", firstname: "Admin", lastname: "Admin"
+user.roles << Role.first
 company = Company.create name: "Example AG", url: "example.com", address: "Examplestreet 123", city: "Zurich", zip: "8000", phone: "+41 11 234 56 78", mail: "info@examplecompany.ch"
 Employee.create user: user, company: company, role: "admin"
 

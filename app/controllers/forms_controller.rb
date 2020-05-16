@@ -1,12 +1,12 @@
 class FormsController < ApiController
   def index
-    @forms = Forms.where project_id: params[:project_id], status: params[:status]
+    @forms = Form.where project_id: params[:project_id], status: params[:status]
 
     render json: @forms
   end
 
   def show
-    @form = Forms.find params[:id]
+    @form = Form.find params[:id]
 
     render json: @form
   end
@@ -14,7 +14,7 @@ class FormsController < ApiController
   def create
     data = params.permit(:name, :project_id)
     
-    @form = Forms.new data
+    @form = Form.new data
     
     if @form.save!
       render json: @form

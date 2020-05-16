@@ -12,7 +12,13 @@ Rails.application.routes.draw do
   resources :customers
   resources :articles
   resources :companies
-  resources :offers
+
+  resources :forms do 
+    collection do
+      get '/:status', to: 'forms#index'
+    end
+  end
+
   resources :projects do
     resources :forms do
       collection do

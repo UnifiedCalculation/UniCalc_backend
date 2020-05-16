@@ -13,6 +13,8 @@ module UniCalcBackend
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
+    config.pdf_generator_url = 'https://unicalc-pdfgenerator.herokuapp.com/toPdf'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

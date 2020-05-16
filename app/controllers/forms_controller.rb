@@ -1,4 +1,6 @@
 class FormsController < ApiController
+  include ActiveModel::Serializers::JSON
+
   def index
     @forms = Form.where project_id: params[:project_id], status: params[:status].singularize
 
@@ -27,5 +29,16 @@ class FormsController < ApiController
 
   def update
     byebug
+  end
+
+  def generate
+    url = [Rails.configuration.pdf_generator_url, params[:kind]].join('/')
+    data = Form.find(params[:id]).to_json(include: {entries: {include: :articles}})
+
+    require "uri"
+    require "net/http"
+
+    request = Net::HTTP.post_form(URI.parse(url), data)
+    puts request.body
   end
 end

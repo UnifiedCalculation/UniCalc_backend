@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     collection do
       get '/:status', to: 'forms#index'
     end
+    get 'pdf/:kind', to: 'forms#generate'
   end
 
   resources :projects do

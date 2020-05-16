@@ -29,7 +29,7 @@ Rails.application.routes.draw do
         post '/status/:status', to: 'forms#create'
       end
       resources :entries do
-        resources :articles
+        resources :articles_entries
       end
     end
   end

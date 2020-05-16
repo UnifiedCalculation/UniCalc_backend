@@ -7,8 +7,8 @@ class EntriesController < ApiController
   end
 
   def create
-    permitted_params = params.require(:entry).permit(:title, :offer_id)
-    permitted_params[:offer_id] = params[:offer_id]
+    permitted_params = params.require(:entry).permit(:title)
+    permitted_params[:form_id] = params[:form_id]
     @entry = Entry.create! permitted_params
 
     render json: @entry
@@ -19,7 +19,7 @@ class EntriesController < ApiController
   end
 
   def index
-    @entries = Entry.where params.permit(:offer_id)
+    @entries = Entry.where params.permit(:form_id)
 
     render json: @entries
   end

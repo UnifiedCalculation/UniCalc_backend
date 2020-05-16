@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :forms do
       collection do
         get '/:status', to: 'forms#index'
+        post '/:status', to: 'forms#create'
       end
       resources :entries
     end

@@ -1,6 +1,6 @@
 class FormsController < ApiController
   def index
-    @forms = Form.where project_id: params[:project_id], status: params[:status]
+    @forms = Form.where project_id: params[:project_id], status: params[:status].singularize
 
     render json: @forms
   end
@@ -15,6 +15,8 @@ class FormsController < ApiController
     data = params.permit(:name, :project_id)
     
     @form = Form.new data
+    @form.status = params[:status].singularize
+    @form.employee = current_user.employee
     
     if @form.save!
       render json: @form

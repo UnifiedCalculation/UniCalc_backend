@@ -6,7 +6,10 @@ class ArticlesController < ApiController
   end
 
   def create
-    @article = Article.create! params.require(:article).permit(:number, :name, :price, :unit, :description)
+    @article = Article.new params.require(:article).permit(:number, :name, :price, :unit, :description)
+    @article.company = current_user.company
+
+    @article.save!
 
     render json: @article
   end

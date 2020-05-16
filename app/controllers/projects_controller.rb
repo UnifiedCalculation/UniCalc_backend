@@ -12,6 +12,8 @@ class ProjectsController < ApiController
   end
 
   def create
+    # TODO remove
+    params[:project][:customer_id] = params[:customer_id][:id]
     project_data = params[:project].permit(:name, :customer_id, :address, :zip, :city, :description)
     project_data[:company_id] = current_user.company.id
     @project = Project.new project_data

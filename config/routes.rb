@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :customers
   resources :articles
   resources :companies
+  resources :npks
+  resources :employees
 
   resources :forms do 
     collection do

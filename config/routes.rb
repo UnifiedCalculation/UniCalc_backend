@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'dashboard#show'
 
-  get 'dashboard/show'
+  get 'registration', to: 'users#new'
 
   get 'username', to: 'users#username'
   get 'user', to: 'users#show'

@@ -105,7 +105,7 @@ export async function getUserProjects(onError, callback) {
 }
 
 export async function getContracts(onError, callback) {
-  axios.get('forms/contracts')
+  axios.get('forms/status/contracts')
       .then(res => {
         if (callback) {
           callback(res.data);
@@ -115,7 +115,7 @@ export async function getContracts(onError, callback) {
 }
 
 export async function getUserContracts(onError, callback) {
-  axios.get('user/forms/contracts')
+  axios.get('user/forms/status/contracts')
       .then(res => {
         if (callback) {
           callback(res.data);
@@ -216,7 +216,7 @@ export async function getProjectData(projectId, onError, callback) {
 }
 
 export async function getOffersFromProject(projectId, onError, callback) {
-  axios.get('projects/' + projectId + '/forms/offers')
+  axios.get('projects/' + projectId + '/forms/status/offers')
       .then(res => {
         if (callback) {
           callback(res.data);
@@ -226,7 +226,7 @@ export async function getOffersFromProject(projectId, onError, callback) {
 }
 
 export async function getContractsFromProject(projectId, onError, callback) {
-  axios.get('projects/' + projectId + '/forms/contracts')
+  axios.get('projects/' + projectId + '/forms/status/contracts')
       .then(res => {
         if (callback) {
           callback(res.data);
@@ -236,7 +236,7 @@ export async function getContractsFromProject(projectId, onError, callback) {
 }
 
 export async function getInvoicesFromProject(projectId, onError, callback) {
-  axios.get('projects/' + projectId + '/forms/invoices')
+  axios.get('projects/' + projectId + '/forms/status/invoices')
       .then(res => {
         if (callback) {
           callback(res.data);
@@ -286,7 +286,7 @@ export async function getEmployeeData(employeeId, onError, callback) {
 }
 
 export async function turnOfferIntoContract(projectId, offerId, onError, callback) {
-  axios.post('projects/' + projectId + '/forms/contracts', {offer_id: offerId})
+  axios.post('projects/' + projectId + '/forms/status/contracts', {offer_id: offerId})
       .then(res => {
         if (callback) {
           callback(res.data);
@@ -296,7 +296,7 @@ export async function turnOfferIntoContract(projectId, offerId, onError, callbac
 }
 
 export async function turnContractIntoInvoice(projectId, contractId, onError, callback) {
-  axios.post('projects/' + projectId + '/forms/invoices', {contract_id: contractId})
+  axios.post('projects/' + projectId + '/forms/status/invoices', {contract_id: contractId})
       .then(res => {
         if (callback) {
           callback(res.data);
@@ -306,7 +306,7 @@ export async function turnContractIntoInvoice(projectId, contractId, onError, ca
 }
 
 export async function saveOfferToProject(projectId, offer, onError, callback) {
-  axios.post('projects/' + projectId + '/forms/offers', offer)
+  axios.post('projects/' + projectId + '/forms/status/offers', offer)
       .then(res => {
         if (callback) {
           callback(res.data);
@@ -316,7 +316,7 @@ export async function saveOfferToProject(projectId, offer, onError, callback) {
 }
 
 export async function saveContractToProject(projectId, contract, onError, callback) {
-  axios.post('projects/' + projectId + '/forms/contracts', contract)
+  axios.post('projects/' + projectId + '/forms/status/contracts', contract)
       .then(res => {
         if (callback) {
           callback(res.data);
@@ -406,7 +406,7 @@ export async function addNewEntryToContract(projectId, contractId, entry, onErro
 }
 
 export async function updateOffer(projectId, offer, onError, callback) {
-  axios.put('projects/' + projectId + '/forms/offers/' + offer.id, offer)
+  axios.put('projects/' + projectId + '/forms/status/offers/' + offer.id, offer)
       .then(res => {
         if (callback) {
           callback(res.data);
@@ -426,7 +426,7 @@ export async function getOfferAsPDF(projectId, offerId, onError, callback) {
 
 export async function getContractAsPDF(projectId, contracId, onError, callback) {
   if (contracId) {
-    axios.get('projects/' + projectId + '/forms/contracts/' + contracId + '/pdf')
+    axios.get('projects/' + projectId + '/forms/status/contracts/' + contracId + '/pdf')
         .catch(error => handleErrors(error, onError));
   } else {
     onError("Can't get Offer as PDF as it has no ID!")

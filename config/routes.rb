@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :forms do 
     collection do
-      get '/:status', to: 'forms#index'
+      get '/status/:status', to: 'forms#index'
     end
     get 'pdf/:kind', to: 'forms#generate'
   end
@@ -25,10 +25,12 @@ Rails.application.routes.draw do
   resources :projects do
     resources :forms do
       collection do
-        get '/:status', to: 'forms#index'
-        post '/:status', to: 'forms#create'
+        get '/status/:status', to: 'forms#index'
+        post '/status/:status', to: 'forms#create'
       end
-      resources :entries
+      resources :entries do
+        resources :articles
+      end
     end
   end
 

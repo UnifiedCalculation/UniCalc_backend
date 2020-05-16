@@ -31,6 +31,12 @@ class FormsController < ApiController
     byebug
   end
 
+  def destroy
+    @form = Form.find(params[:id]).destroy
+
+    render json: @form
+  end
+
   def generate
     url = [Rails.configuration.pdf_generator_url, params[:kind]].join('/')
     data = Form.find(params[:id]).to_json(include: {entries: {include: :articles}})

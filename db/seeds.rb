@@ -6,6 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Delete ALL old data
+ActiveRecord::Base.establish_connection
+ActiveRecord::Base.connection.tables.each do |table|
+  next if table == 'schema_migrations'
+
+  ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
+end
+
 # Create roles
 Role.create name: "Admin"
 Role.create name: "Verkäufer"

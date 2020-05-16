@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_155816) do
+ActiveRecord::Schema.define(version: 2020_05_16_104935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "articels", force: :cascade do |t|
+  create_table "articles", force: :cascade do |t|
     t.string "name"
     t.bigint "npk_id", null: false
     t.decimal "price"
@@ -24,18 +24,19 @@ ActiveRecord::Schema.define(version: 2020_05_06_155816) do
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_id"], name: "index_articels_on_company_id"
-    t.index ["npk_id"], name: "index_articels_on_npk_id"
+    t.integer "number"
+    t.index ["company_id"], name: "index_articles_on_company_id"
+    t.index ["npk_id"], name: "index_articles_on_npk_id"
   end
 
-  create_table "articels_entries", id: false, force: :cascade do |t|
+  create_table "articles_entries", id: false, force: :cascade do |t|
     t.bigint "articel_id", null: false
     t.bigint "entry_id", null: false
     t.string "comment"
     t.integer "amount"
     t.decimal "discount"
-    t.index ["articel_id", "entry_id"], name: "index_articels_entries_on_articel_id_and_entry_id"
-    t.index ["entry_id", "articel_id"], name: "index_articels_entries_on_entry_id_and_articel_id"
+    t.index ["articel_id", "entry_id"], name: "index_articles_entries_on_articel_id_and_entry_id"
+    t.index ["entry_id", "articel_id"], name: "index_articles_entries_on_entry_id_and_articel_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -141,10 +142,10 @@ ActiveRecord::Schema.define(version: 2020_05_06_155816) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "articels", "companies"
-  add_foreign_key "articels", "npks"
-  add_foreign_key "articels_entries", "articels"
-  add_foreign_key "articels_entries", "entries"
+  add_foreign_key "articles", "companies"
+  add_foreign_key "articles", "npks"
+  add_foreign_key "articles_entries", "articles", column: "articel_id"
+  add_foreign_key "articles_entries", "entries"
   add_foreign_key "customers", "companies"
   add_foreign_key "customers", "users"
   add_foreign_key "employees", "companies"

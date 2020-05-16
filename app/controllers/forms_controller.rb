@@ -27,10 +27,6 @@ class FormsController < ApiController
     end
   end
 
-  def update
-    byebug
-  end
-
   def destroy
     @form = Form.find(params[:id]).destroy
 
@@ -38,8 +34,10 @@ class FormsController < ApiController
   end
 
   def generate
-    url = [Rails.configuration.pdf_generator_url, params[:kind]].join('/')
-    data = Form.find(params[:id]).to_json(include: {entries: {include: :articles}})
+    form = Form.find(params[:id])
+    
+    url = [Rails.configuration.pdf_generator_url, form.status].join('/')
+    data = form.to_json(include: {entries: {include: :articles}})
 
     require "uri"
     require "net/http"

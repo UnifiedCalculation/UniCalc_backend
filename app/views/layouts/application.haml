@@ -1,7 +1,11 @@
 !!! 5
 %html
   %head
-    %title= yield(:title)
+    %title
+      = 'UniCalc'
+
+    = favicon_link_tag asset_path('favicon.png'), rel: 'icon', type:  'image/png'
+
     = tag 'meta', {content: "width=device-width, initial-scale=1.0", name: "viewport"}, true
     = csrf_meta_tags
     = csp_meta_tag

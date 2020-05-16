@@ -2,6 +2,8 @@ class ArticlesController < ApiController
   def index
     @articles = Article.where company: current_user.company
 
+    @articles = @articles.joins(:articles_entries).where(articles_entries: {entry_id: params[:entry_id]}) if params[:entry_id].present?
+
     render json: @articles
   end
 

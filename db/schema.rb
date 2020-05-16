@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_105756) do
+ActiveRecord::Schema.define(version: 2020_05_16_124721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,13 +30,13 @@ ActiveRecord::Schema.define(version: 2020_05_16_105756) do
   end
 
   create_table "articles_entries", id: false, force: :cascade do |t|
-    t.bigint "articel_id", null: false
+    t.bigint "article_id", null: false
     t.bigint "entry_id", null: false
     t.string "comment"
     t.integer "amount"
     t.decimal "discount"
-    t.index ["articel_id", "entry_id"], name: "index_articles_entries_on_articel_id_and_entry_id"
-    t.index ["entry_id", "articel_id"], name: "index_articles_entries_on_entry_id_and_articel_id"
+    t.index ["article_id", "entry_id"], name: "index_articles_entries_on_article_id_and_entry_id"
+    t.index ["entry_id", "article_id"], name: "index_articles_entries_on_entry_id_and_article_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_105756) do
 
   add_foreign_key "articles", "companies"
   add_foreign_key "articles", "npks"
-  add_foreign_key "articles_entries", "articles", column: "articel_id"
+  add_foreign_key "articles_entries", "articles"
   add_foreign_key "articles_entries", "entries"
   add_foreign_key "customers", "companies"
   add_foreign_key "customers", "users"

@@ -6,7 +6,7 @@ class ArticlesEntriesController < ApiController
   end
 
   def create
-    @articles_entry = ArticlesEntry.create! params.require(:articles_entry).permit(:article_id, :entry_id, :description, :amount, :discount)
+    @articles_entry = ArticlesEntry.create! params.permit(:article_id, :entry_id, :description, :amount, :discount)
 
     render json: @articles_entry
   end

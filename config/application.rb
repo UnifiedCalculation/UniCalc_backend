@@ -13,6 +13,8 @@ module UniCalcBackend
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
+    config.host_url = 'https://unicalc-staging.herokuapp.com/'
+
     config.pdf_generator_url = 'https://unicalc-pdfgenerator.herokuapp.com/toPdf'
 
     # Settings in config/environments/* take precedence over those specified here.

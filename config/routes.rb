@@ -19,11 +19,11 @@ Rails.application.routes.draw do
     collection do
       get '/status/:status', to: 'forms#index'
     end
-    get 'pdf', to: 'forms#generate'
   end
 
   resources :projects do
     resources :forms do
+      get 'pdf', to: 'forms#generate'
       collection do
         get '/status/:status', to: 'forms#index'
         post '/status/:status', to: 'forms#create'

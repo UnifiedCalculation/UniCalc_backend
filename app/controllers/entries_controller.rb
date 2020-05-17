@@ -15,7 +15,11 @@ class EntriesController < ApiController
   end
 
   def update
+    entry = Entry.find params[:id]
 
+    entry.update params.require(:entry).permit(:title, :discount)
+
+    render json: entry
   end
 
   def index

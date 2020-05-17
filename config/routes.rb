@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :forms do
       get 'pdf', to: 'forms#generate'
+      post '/status/:status', to: 'forms#update_status'
       collection do
         get '/status/:status', to: 'forms#index'
         post '/status/:status', to: 'forms#create'

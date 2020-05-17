@@ -27,6 +27,15 @@ class FormsController < ApiController
     end
   end
 
+  def update_status
+    form = Form.find params[:id]
+
+    updated_form = form.dup include: {entries: :articles_entries}
+    updated_form.update status: params[:status].singularize
+
+    rendern json: updated_form
+  end
+
   def destroy
     @form = Form.find(params[:id]).destroy
 

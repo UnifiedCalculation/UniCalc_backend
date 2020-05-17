@@ -15,11 +15,13 @@ Rails.application.routes.draw do
   resources :npks
   resources :employees
 
-  resources :forms do 
+  resources :forms do
+    put 'assignedEmployee', to: 'forms#assigned_employee'
     collection do
       get '/status/:status', to: 'forms#index'
     end
   end
+  get '/user/forms/status/contracts', to: 'forms#index_user'
 
   resources :projects do
     resources :forms do

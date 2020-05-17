@@ -7,6 +7,12 @@ class FormsController < ApiController
     render json: @forms
   end
 
+  def index_user
+    @forms = Form.where project_id: params[:project_id], status: 'contract', employee: current_user.employee
+
+    render json: @forms
+  end
+
   def show
     @form = Form.find params[:id]
 
@@ -28,12 +34,19 @@ class FormsController < ApiController
   end
 
   def update_status
-    form = Form.find params[:id]
+    form = Form.find params[:form_id]
 
-    updated_form = form.dup include: {entries: :articles_entries}
-    updated_form.update status: params[:status].singularize
+    updated_form = form.deep_clone include: {entries: :articles_entries}
+    updated_form.update status: params[:status].singularize, employee: current_user.employee
 
-    rendern json: updated_form
+    render json: updated_form
+  end
+
+  def assigned_employee
+    form = Form.find params[:form_id]
+    form.update params.require(:form).permit(:employee_id)
+
+    render json: form
   end
 
   def destroy

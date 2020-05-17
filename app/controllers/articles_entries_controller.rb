@@ -15,5 +15,7 @@ class ArticlesEntriesController < ApiController
     article_entry = ArticlesEntry.find_by entry_id: params[:entry_id], article_id: params[:id]
 
     article_entry.update params.require(:article_entry).permit(:amount, :description, :discount)
+
+    render json: article_entry
   end
 end

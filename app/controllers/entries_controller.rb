@@ -1,5 +1,4 @@
 class EntriesController < ApiController
-
   def show
     @entry = Entry.find params[:id]
 

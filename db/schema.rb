@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_131830) do
+ActiveRecord::Schema.define(version: 2020_05_18_154148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_131830) do
 
   create_table "articles_entries", id: false, force: :cascade do |t|
     t.bigint "article_id", null: false
-    t.bigint "entry_id", null: false
+    t.integer "entry_id", null: false
     t.string "description"
     t.integer "amount"
     t.decimal "discount"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_131830) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "discount"
     t.index ["form_id"], name: "index_entries_on_form_id"
   end
 

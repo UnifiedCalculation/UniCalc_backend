@@ -1,14 +1,16 @@
 class EmployeesController < ApiController
-  def index
-    @employee = Employee.select(:id, :user_id, :company_id, :firstname, :lastname, :email).joins(:user).all
+  include ActiveModel::Serializers::JSON
 
-    render json: @employee
+  def index
+    @employee = User.select(:id, :user_id, :company_id, :firstname, :lastname, :email).joins(:employee).all
+
+    render json: @employee.to_json(include: :roles)
   end
 
   def show
-    employee = Employee.select(:id, :user_id, :company_id, :firstname, :lastname, :email).joins(:user).find params[:id]
+    employee = User.select(:id, :user_id, :company_id, :firstname, :lastname, :email).joins(:employee).find params[:id]
 
-    render json: employee
+    render json: employee.to_json(include: :roles)
   end
 
   def create

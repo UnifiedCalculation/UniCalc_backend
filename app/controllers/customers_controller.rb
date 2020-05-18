@@ -1,8 +1,8 @@
 class CustomersController < ApiController
   def index
-    @customers = Customer.all
+    @customers = Customer.select(:id, :user_id, :company_id, :firstname, :lastname, :email).joins(:user).all
 
-    @customer = @customers.where company: current_user.company if current_user.company.present?
+    @customers = @customers.where company: current_user.company if current_user.company.present?
 
     render json: @customers
   end

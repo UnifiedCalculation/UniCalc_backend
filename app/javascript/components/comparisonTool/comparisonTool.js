@@ -78,8 +78,8 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
             delete entry.created_at;
             delete entry.updated_at;
         });
-        setData(comparisonData);
         setEditedData(Object.assign({}, comparisonData));
+        setData(comparisonData);
     }
 
     const getOldEntry = (entry) => {
@@ -113,13 +113,12 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
         editData.entries[entryId].articles_entries[articleId].description = 
         editedData.entries[entryId].articles_entries[articleId].description.old; 
 
-        setEditedData(editedData);
+        setEditedData(editData);
         setSelected(true);
     }
 
     const selectNew = (entryId, articleId) => {
-        const editData = {};
-        Object.assign(editData, editedData);
+        const editData = Object.assign(editData, editedData);
         editData.entries[entryId].articles_entries[articleId].amount = 
         editedData.entries[entryId].articles_entries[articleId].amount.new; 
         
@@ -129,7 +128,7 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
         editData.entries[entryId].articles_entries[articleId].description = 
         editedData.entries[entryId].articles_entries[articleId].description.new; 
 
-        setEditedData(editedData);
+        setEditedData(editData);
         setSelected(true);
 
     }

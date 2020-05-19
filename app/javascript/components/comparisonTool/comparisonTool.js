@@ -101,8 +101,9 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
     }
 
     const selectOld = (entryId, articleId) => {
-        const editData = {};
-        Object.assign(editData, editedData);
+        const editData = Object.assign({}, editedData);
+        console.log(editData);
+        console.log(editedData);
         editData.entries[entryId].articles_entries[articleId].amount = 
         editedData.entries[entryId].articles_entries[articleId].amount.old; 
         

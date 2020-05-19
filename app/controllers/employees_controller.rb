@@ -2,7 +2,7 @@ class EmployeesController < ApiController
   include ActiveModel::Serializers::JSON
 
   def index
-    @employees = Employee.select(:id, :user_id, :company_id, :firstname, :lastname, :email).joins(:user).all
+    @employees = Employee.select(:id, :user_id, :company_id, :firstname, :lastname, :email).joins(:user).where company: current_user.company
 
     result = []
     @employees.each do |employee|

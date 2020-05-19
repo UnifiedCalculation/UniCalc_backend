@@ -60,7 +60,7 @@ const NewProjectDialog = ({ customers, onCancel, onSubmit, show, projectId, ...p
         <Autocomplete
             id="customer-autocomplete"
             options={customers}
-            getOptionLabel={option => option.lastname + ' ' + option.firstname}
+            getOptionLabel={option => option.lastName + ' ' + option.firstName}
             renderInput={(params) =>
                 <TextField
                     {...params}
@@ -92,7 +92,7 @@ const NewProjectDialog = ({ customers, onCancel, onSubmit, show, projectId, ...p
 
     const prepareData = (data) => {
         data.customer_id = customers.find(element => 
-            (element.lastname + ' ' + element.firstname) === data.customer).id;
+            (element.lastName + ' ' + element.firstName) === data.customer).id;
             data.payment_target = data.payment_target || "30 Tage";
         delete data.customer;
 

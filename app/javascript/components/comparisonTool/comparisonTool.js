@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -101,9 +100,8 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
     }
 
     const selectOld = (entryId, articleId) => {
-        console.log(editedData);
+        setSelected(true);
         const editData = Object.assign({}, editedData);
-        console.log(editData);
         editData.entries[entryId].articles_entries[articleId].amount = 
         data.entries[entryId].articles_entries[articleId].amount.old; 
         
@@ -114,13 +112,11 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
         data.entries[entryId].articles_entries[articleId].description.old; 
 
         setEditedData(editData);
-        setSelected(true);
     }
 
     const selectNew = (entryId, articleId) => {
-        console.log(editedData);
+        setSelected(true);
         const editData = Object.assign({}, editedData);
-        console.log(editData);
         editData.entries[entryId].articles_entries[articleId].amount = 
         data.entries[entryId].articles_entries[articleId].amount.new; 
         
@@ -131,8 +127,6 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
         data.entries[entryId].articles_entries[articleId].description.new; 
 
         setEditedData(editData);
-        setSelected(true);
-
     }
 
     const theme = useTheme();
@@ -162,13 +156,7 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
 
     const children = tables ?
         <>
-            <SwipeableViews
-                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                index={index}
-                onChangeIndex={handleChangeIndex}
-            >
-                {tables}
-            </SwipeableViews>
+            {tables}
             {stepper}
         </>
         : <Loading text={"Bereite Daten vor..."} />;

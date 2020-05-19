@@ -67,17 +67,28 @@ class FormsController < ApiController
   end
 
   def create
-    data = params.permit(:name, :project_id)
+    data = params.permit(:name, :discount, :project_id)
     
     @form = Form.new data
     @form.status = params[:status].singularize
     @form.employee = current_user.employee
-    
-    if @form.save!
-      render json: @form
-    else
-      render json: {response: 'Record invalid'}, status: 400
+    @form.save!
+
+    if params[:entries].present?
+      params[:entries].each do |entry_data|
+        entry_data[:form_id] = @form.id
+        entry = Entry.create! entry_data.permit(:form_id, :title, :discount)
+
+        if entry_data[:articles_entries].present?
+          entry_data[:articles_entries].each do |articles_entry_data|
+            articles_entry_data[:entry_id] = entry.id
+            article_entry = ArticlesEntry.create! articles_entry_data.permit(:entry_id, :article_id, :amount, :description, :discount)
+          end
+        end
+      end
     end
+    
+    render json: @form
   end
 
   def update_status

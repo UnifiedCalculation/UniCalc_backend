@@ -17,7 +17,7 @@ class EmployeesController < ApiController
   end
 
   def show
-    employee = User.select(:id, :user_id, :company_id, :firstname, :lastname, :email).joins(:employee).find params[:id]
+    employee = Employee.select(:id, :user_id, :company_id, :firstname, :lastname, :email).joins(:user).find params[:id]
 
     user = employee.user
     employee = employee.attributes

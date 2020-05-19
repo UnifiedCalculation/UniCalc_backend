@@ -24,6 +24,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
+    "react-swipeable-views": "^0.13.9",
     "react_ujs": "^2.6.1",
     "turbolinks": "^5.2.0"
   },

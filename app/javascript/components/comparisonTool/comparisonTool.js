@@ -101,9 +101,9 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
     }
 
     const selectOld = (entryId, articleId) => {
+        console.log(editedData);
         const editData = Object.assign({}, editedData);
         console.log(editData);
-        console.log(editedData);
         editData.entries[entryId].articles_entries[articleId].amount = 
         data.entries[entryId].articles_entries[articleId].amount.old; 
         
@@ -118,7 +118,9 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
     }
 
     const selectNew = (entryId, articleId) => {
-        const editData = Object.assign(editData, editedData);
+        console.log(editedData);
+        const editData = Object.assign({}, editedData);
+        console.log(editData);
         editData.entries[entryId].articles_entries[articleId].amount = 
         data.entries[entryId].articles_entries[articleId].amount.new; 
         

@@ -77,8 +77,8 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
             delete entry.created_at;
             delete entry.updated_at;
         });
+        setEditedData(Object.assign({}, comparisonData));
         setData(comparisonData);
-        setEditedData(comparisonData);
     }
 
     const getOldEntry = (entry) => {

@@ -27,7 +27,7 @@ const ProductTable = ({setErrorMessage, products, setProducts}) => {
   }
 
   const rows = products.map(function (item) {
-    if (item.npk_id == null) {
+    if (item.npk === "") {
       return createData(
           item.number,
           item.name,
@@ -36,7 +36,7 @@ const ProductTable = ({setErrorMessage, products, setProducts}) => {
           item.description);
     } else {
       return createData(
-          (item.npk.number + "." + item.number),
+          (item.npk + "." + item.number),
           item.name,
           Number(item.price).toFixed(2),
           item.unit,

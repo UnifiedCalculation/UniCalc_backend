@@ -149,6 +149,7 @@ const DynamicEntry = ({ projectId, offerId, contractId, invoiceId, entryData, on
     }
 
     const editEntryData = (entryData) => {
+        console.log(JSON.stringify(entryData));
         if (offerId != null) {
             API.updateOfferEntryData(projectId, offerId, entry.id, entryData, onError, onChange);
         } else if (contractId != null) {
@@ -293,7 +294,7 @@ const DynamicEntry = ({ projectId, offerId, contractId, invoiceId, entryData, on
             {entry ?
                 <NewEntrySegmentDialog
                     show={editEntryDialog}
-                    segmentName={entry.title}
+                    segmentName={entry.name}
                     discount={entry.discount}
                     onCancel={() => setEditEntryDialogShowState(false)}
                     onSubmit={editEntryData}

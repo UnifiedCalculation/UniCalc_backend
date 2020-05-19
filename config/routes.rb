@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
   end
   get '/user/forms/status/contracts', to: 'forms#index_user'
+  get 'forms/compare/:first_id/to/:second_id', to: 'forms#compare'
 
   resources :projects do
     resources :forms do

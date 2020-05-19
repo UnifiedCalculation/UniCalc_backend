@@ -19,6 +19,53 @@ class FormsController < ApiController
     render json: @form
   end
 
+  def compare
+    old_form = Form.find params[:first_id]
+    new_form = Form.find params[:second_id]
+
+    result = old_form.attributes
+    result[:entries] = []
+
+    old_form.entries.each_with_index do |old_entry, entry_index|
+      break if entry_index >= new_form.entries.count
+
+      result_entry = old_entry.attributes
+      result_entry[:articles_entries] = []
+
+      new_entry = new_form.entries[entry_index]
+
+      old_entry.articles_entries.each_with_index do |old_article_entry, art_index|
+        break if art_index >= new_entry.articles_entries.count
+        
+        new_article_entry = new_entry.articles_entries[art_index]
+
+        result_entry[:articles_entries] << {
+          amount: {
+            old: old_article_entry.amount,
+            new: new_article_entry.amount
+          },
+          article_id: old_article_entry.article_id,
+          description: {
+            old: old_article_entry.description,
+            new: new_article_entry.description
+          },
+          discount: {
+            old: old_article_entry.discount,
+            new: new_article_entry.discount
+          },
+          entry_id: old_article_entry.entry_id,
+          name: old_article_entry.article.name,
+          price: old_article_entry.article.price,
+          unit: old_article_entry.article.unit
+        }
+      end
+
+      result[:entries] << result_entry
+    end
+
+    render json: result
+  end
+
   def create
     data = params.permit(:name, :project_id)
     

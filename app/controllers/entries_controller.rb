@@ -6,7 +6,7 @@ class EntriesController < ApiController
   end
 
   def create
-    permitted_params = params.require(:entry).permit(:title)
+    permitted_params = params.require(:entry).permit(:title, :discount)
     permitted_params[:form_id] = params[:form_id]
     @entry = Entry.create! permitted_params
 

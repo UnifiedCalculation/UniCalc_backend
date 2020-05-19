@@ -20,8 +20,8 @@ class FormsController < ApiController
   end
 
   def compare
-    old_form = Form.find params[:first_id]
-    new_form = Form.find params[:second_id]
+    new_form = Form.find params[:contract_id]
+    old_form = new_form.copied_from
 
     result = old_form.attributes
     result[:entries] = []
@@ -36,7 +36,7 @@ class FormsController < ApiController
 
       old_entry.articles_entries.each_with_index do |old_article_entry, art_index|
         break if art_index >= new_entry.articles_entries.count
-        
+
         new_article_entry = new_entry.articles_entries[art_index]
 
         result_entry[:articles_entries] << {
@@ -84,7 +84,7 @@ class FormsController < ApiController
     form = Form.find params[:form_id]
 
     updated_form = form.deep_clone include: {entries: :articles_entries}
-    updated_form.update status: params[:status].singularize, employee: current_user.employee
+    updated_form.update! status: params[:status].singularize, employee: current_user.employee, copied_from: form
 
     render json: updated_form
   end

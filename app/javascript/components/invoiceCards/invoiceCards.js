@@ -44,7 +44,7 @@ const InvoiceCards = ({ invoices, setInvoiceDetails }) => {
                 key={(index + 1) + "-invoiceCard-detail"}
                 onClick={() => setInvoiceDetails(invoices[index])}
                 projectName={entry.name}
-                description={"Zuletzt bearbeitet am: " +
+                description={"Zuletz bearbeitet am: " +
                     new Date(entry.updated_at)
                         .toLocaleString("de-DE", dateOptions)
                         .replace(/(.*)\D\d+/, "$1")}

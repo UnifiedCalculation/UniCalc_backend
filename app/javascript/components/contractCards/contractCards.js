@@ -44,7 +44,7 @@ const ContractCards = ({ contracts, setContractDetails }) => {
                 key={(index + 1) + "-offerCard"}
                 onClick={() => setContractDetails(contracts[index])}
                 projectName={entry.name}
-                description={"Zuletzt bearbeitet am: " +
+                description={"Zuletz bearbeitet am: " +
                     new Date(entry.updated_at)
                         .toLocaleString("de-DE", dateOptions)
                         .replace(/(.*)\D\d+/, "$1")}

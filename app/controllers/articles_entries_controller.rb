@@ -12,9 +12,7 @@ class ArticlesEntriesController < ApiController
   end
 
   def update
-    article_entry = ArticlesEntry.find_by entry_id: params[:entry_id], article_id: params[:id]
-
-    article_entry.update params.require(:article_entry).permit(:amount, :description, :discount)
+    article_entry = ArticlesEntry.where(entry_id: params[:entry_id], article_id: params[:article_id]).update_all(amount: params[:articles_entry][:amount], description: params[:articles_entry][:discount], discount: params[:articles_entry][:discount])
 
     render json: article_entry
   end

@@ -12,7 +12,7 @@ class ArticlesEntriesController < ApiController
   end
 
   def update
-    article_entry = ArticlesEntry.where(entry_id: params[:entry_id], article_id: params[:article_id]).update_all(amount: params[:articles_entry][:amount], description: params[:articles_entry][:discount], discount: params[:articles_entry][:discount])
+    article_entry = ArticlesEntry.where(entry_id: params[:entry_id], article_id: params[:article_id]).update_all(amount: params[:articles_entry][:amount], description: params[:articles_entry][:description], discount: params[:articles_entry][:discount])
 
     render json: article_entry
   end

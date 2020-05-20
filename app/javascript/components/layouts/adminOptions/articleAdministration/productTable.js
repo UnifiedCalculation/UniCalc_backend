@@ -16,7 +16,7 @@ import Paper from '@material-ui/core/Paper';
 import {getProducts} from "../../../connectionHandler/connectionHandler";
 
 
-const ProductTable = ({setErrorMessage, products, setProducts}) => {
+const ProductTable = ({npks, setErrorMessage, products, setProducts}) => {
 
   useEffect(() => {
     getProducts(setErrorMessage, setProducts)
@@ -27,21 +27,22 @@ const ProductTable = ({setErrorMessage, products, setProducts}) => {
   }
 
   const rows = products.map(function (item) {
-    if (item.npk === "") {
-      return createData(
+        if(item.npk_id != null){
+          return createData(
+            (npks.find(npk => npks.find(entry => entry.id == item.npk_id).npk_id == npk.id).number + '.' + npks.find(entry => entry.id == item.npk_id).number + '.' + item.number ),
+            item.name,
+            Number(item.price).toFixed(2),
+            item.unit,
+            item.description);
+
+        } else {
+          return createData(
           item.number,
           item.name,
           Number(item.price).toFixed(2),
           item.unit,
           item.description);
-    } else {
-      return createData(
-          (item.npk + "." + item.number),
-          item.name,
-          Number(item.price).toFixed(2),
-          item.unit,
-          item.description);
-    }
+        }
   });
 
   function descendingComparator(a, b, orderBy) {
@@ -246,10 +247,7 @@ const ProductTable = ({setErrorMessage, products, setProducts}) => {
 
                       return (
                           <TableRow
-                              hover
-                              role="checkbox"
-                              tabIndex={-1}
-                              key={row.id + 'tableRow'}
+                              key={row.id + 'tableRow' + index}
                           >
                             <TableCell align="left" component="th" id={labelId} scope="row">
                               {row.id}
@@ -263,7 +261,7 @@ const ProductTable = ({setErrorMessage, products, setProducts}) => {
                     })}
                 {emptyRows > 0 && (
                     <TableRow style={{height: (dense ? 33 : 53) * emptyRows}}>
-                      <TableCell colSpan={6}/>
+                      <TableCell colSpan={5}/>
                     </TableRow>
                 )}
               </TableBody>

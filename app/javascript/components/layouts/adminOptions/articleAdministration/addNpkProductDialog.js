@@ -79,10 +79,13 @@ const AddNpkProductDialog = ({setErrorMessage, onCancel, onSubmit, show, setProd
   }
 
   const parseArticleData = (articleData) => {
+    console.log(articleData);
     articleData.name = npks.find(entry => entry.number == articleData.npk.split(" ")[0].split(".")[0]).name;
-    articleData.npk_id = npks.find(entry => entry.number == articleData.npk.split(" ")[0].split(".")[1]).id;
-    articleData.number = articleData.npk_id + "." + articleData.number;
-    onSubmit(articleData);
+    articleData.npk_id = npks.find(entry => entry.number == articleData.npk.split(" ")[0].split(".")[0]).id;
+    //articleData.number = articleData.npk.split(" ")[0] + '.' + articleData.number;
+    
+    console.log(articleData)
+    saveNewArticle(articleData);
   }
 
   useEffect(() => {

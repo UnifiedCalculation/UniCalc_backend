@@ -61,6 +61,7 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
     useEffect(() => {
         if(show){
             API.getComparisonDataForContract(contractId, onError, manipulateData);
+            manipulateData(props.data)
         }
     }, [show]);
 
@@ -98,13 +99,13 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
             )
         });
         setSize(length);
+        console.log(comparisonData);
         setData(comparisonData);
         setEditedData(comparisonData);
     }
 
     const getOldEntry = (entry) => {
-        const oldEntry = {};
-        Object.assign(oldEntry, entry);
+        const oldEntry = Object.assign({}, entry);
         oldEntry.discount = entry.discount.old;
         oldEntry.description = entry.description.old;
         oldEntry.amount = entry.amount.old;
@@ -112,8 +113,7 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
     }
 
     const getNewEntry = (entry) => {
-        const newEntry = {};
-        Object.assign(newEntry, entry);
+        const newEntry = Object.assign({}, entry);
         newEntry.discount = entry.discount.new;
         newEntry.description = entry.description.new;
         newEntry.amount = entry.amount.new;
@@ -122,30 +122,29 @@ const ComparisonTool = ({ contractId, onSubmit, onCancel, onError, show, ...prop
 
     const selectOld = (entryId, articleId) => {
         setSelected(true);
-        const editData = Object.assign({}, editedData);
+        const editData = editedData
         editData.entries[entryId].articles_entries[articleId].amount =
-            data.entries[entryId].articles_entries[articleId].amount.old;
-
+        data.entries[entryId].articles_entries[articleId].amount.old
         editData.entries[entryId].articles_entries[articleId].discount =
-            data.entries[entryId].articles_entries[articleId].discount.old;
+        data.entries[entryId].articles_entries[articleId].discount.old
 
         editData.entries[entryId].articles_entries[articleId].description =
-            data.entries[entryId].articles_entries[articleId].description.old;
-
+        data.entries[entryId].articles_entries[articleId].description.old
+        
         setEditedData(editData);
     }
 
     const selectNew = (entryId, articleId) => {
         setSelected(true);
-        const editData = Object.assign({}, editedData);
+        const editData = editedData
         editData.entries[entryId].articles_entries[articleId].amount =
-            data.entries[entryId].articles_entries[articleId].amount.new;
+        data.entries[entryId].articles_entries[articleId].amount.new
 
         editData.entries[entryId].articles_entries[articleId].discount =
-            data.entries[entryId].articles_entries[articleId].discount.new;
+        data.entries[entryId].articles_entries[articleId].discount.new
 
         editData.entries[entryId].articles_entries[articleId].description =
-            data.entries[entryId].articles_entries[articleId].description.new;
+        data.entries[entryId].articles_entries[articleId].description.new
 
         setEditedData(editData);
     }

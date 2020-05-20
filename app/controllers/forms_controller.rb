@@ -165,6 +165,7 @@ class FormsController < ApiController
       articles = []
       entry.articles_entries.each do |articles_entry|
         articles << {
+          number: articles_entry.article.number,
           amount: articles_entry.amount,
           description: articles_entry.description,
           discount: articles_entry.discount,
